@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,19 +30,23 @@ public class SainathConsultancyController {
         List<Person> personList = personDAO.list();
         ModelAndView modelAndView = new ModelAndView("persons");
         modelAndView.addObject("personsList", personList);
+        System.out.println("list " + personList);
+        System.out.println(" email "+ personList.get(0).getEmailInfos());
+        System.out.println(" mobile "+ personList.get(0).getMobileInfos());
         LOGGER.info("personsList " + personList);
         return modelAndView;
     }
 
     @RequestMapping(value = "/persons/new", method = RequestMethod.GET)
-    public ModelAndView getNewPerson(PersonFormBean personFormBean) {
+    public ModelAndView newPersonForm() {
         ModelAndView modelAndView = new ModelAndView("newpersion");
         return modelAndView;
     }
 
     @RequestMapping(value = "/persons/new", method = RequestMethod.POST)
-    public ModelAndView saveOrUpdatePerson(@Valid PersonFormBean personFormBean, BindingResult bindingResult    ) {
-        ModelAndView modelAndView = new ModelAndView("newPersion");
+    public ModelAndView saveOrUpdatePerson(@ModelAttribute PersonFormBean personFormBean) {
+        ModelAndView modelAndView = new ModelAndView("newpersion");
+        LOGGER.info("Data from form data " + personFormBean);
         return modelAndView;
     }
 }

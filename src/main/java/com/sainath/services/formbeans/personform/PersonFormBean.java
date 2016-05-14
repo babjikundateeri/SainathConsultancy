@@ -1,18 +1,16 @@
 package com.sainath.services.formbeans.personform;
 
-import com.sun.istack.internal.NotNull;
-
 /**
  * Created by babjik on 23/4/16.
  */
 public class PersonFormBean {
-
-    @NotNull
+//
+//    @NotNull
     private String firstName;
-
-    @NotNull
+//
+//    @NotNull
     private String lastName;
-
+//
     public String getFirstName() {
         return firstName;
     }
@@ -27,5 +25,14 @@ public class PersonFormBean {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+
+    @Override
+    public String toString() {
+        return "PersonFormBean{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }
